@@ -16,9 +16,11 @@ int solution(vector<int> citations) {
     
     // 제일 큰 값을 num에 넣고, cnt 1부터 시작, 큰 값부터 하나씩 보기
     for (i = size-2, cnt = 1, num = citations[size-1]; i>=0; --i) {
+        
         // num과 같다면 cnt만 +1
         if (citations[i] == num) {
             cnt++;
+            
         // 더 작은 값이라면, num 갱신하고, cnt +1
         } else {
             num = citations[i];
