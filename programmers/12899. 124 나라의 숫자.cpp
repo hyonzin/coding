@@ -2,24 +2,16 @@
 
 #include <string>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
-int digits[3] = {1, 2, 4};
 
-string digit124(int n){
-    int offset = 0;
-    int k = 1;
-    if (n < 3) return to_string(digits[n]);
-
-    while(offset + k * 3 <= n){
-        k *= 3;
-        offset += k;
+int solution(vector<int> citations) {
+    sort(citations.begin(), citations.end(), greater<int>());
+    
+    for (int i = 0; i<citations.size(); ++i) {
+        if (citations[i] < i + 1) return i;
     }
-    int digit = (n - offset) / k;
-    return to_string(digits[digit]) + digit124(n - (digit + 1)*k);
-}
-
-string solution(int n) {
-    n--;
-    return digit124(n);
+    
+    return citations.size();
 }
