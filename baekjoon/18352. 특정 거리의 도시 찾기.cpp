@@ -20,9 +20,7 @@ int N, M, K, X;
 void search(int step, int from) {
     if (step > K) return;
 
-    Neighbor* nb;
-
-    nb = node[from].neighbor;
+    Neighbor* nb = node[from].neighbor;
     while(nb) {
         if (node[nb->id].dist > step) {
             node[nb->id].dist = step;
