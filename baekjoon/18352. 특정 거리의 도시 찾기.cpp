@@ -1,6 +1,4 @@
-// https://www.acmicpc.net/problem/18352
-
-#include <cstdio>
+#include <stdio.h>
 
 typedef struct _Neighbor {
     int id;
@@ -28,13 +26,7 @@ void search(int step, int from) {
     while(nb) {
         if (node[nb->id].dist > step) {
             node[nb->id].dist = step;
-        }
-        nb = nb->next;
-    }
-
-    nb = node[from].neighbor;
-    if (step + 1 <= K) while (nb) {
-        if (node[nb->id].dist == step) {
+            
             queue_step[queue_cnt] = step + 1;
             queue_from[queue_cnt] = nb->id;
             queue_cnt++;
