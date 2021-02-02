@@ -13,12 +13,14 @@ def check(frm, n):
         return 0
     
     for visit in ways[frm]:
-        if visit[1] != 1:
-            answer[n] = visit[0]
-            visit[1] = 1
-            if check(visit[0], n+1) == 1: 
-                return 1
-            visit[1] = 0
+        to = visit[0]
+        if visit[1] == 1:
+            continue
+        answer[n] = to
+        visit[1] = 1
+        if check(to, n+1) == 1: 
+            return 1
+        visit[1] = 0
         
     return 0
 
