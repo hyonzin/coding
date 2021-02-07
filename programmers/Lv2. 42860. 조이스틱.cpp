@@ -1,5 +1,7 @@
 // https://programmers.co.kr/learn/courses/30/lessons/42860
 
+// https://programmers.co.kr/learn/courses/30/lessons/42860
+
 #include <string>
 #include <vector>
 #include <cmath>
@@ -43,12 +45,6 @@ int solution(string name) {
     //  끝으로 한번 갔다가 돌아와서(2) 오른쪽으로 3번
     //  가는게 최소임. 이 경우 답은 8
     
-    // A가 가장 길게 연속된 지점의 시작점, 끝점을 찾고,
-    // 한 방향으로 갔다가 되돌아가는 경우를 따지면 됨
-    int seq_len = 0;
-    int seq_start = 0;
-    int seq_end = 0;
-    
     // 일단 두번째 글자 이후로 A를 찾기
     for (i=1; i<n; ++i) {
         if (name[i] == 'A') {
@@ -59,36 +55,22 @@ int solution(string name) {
                     break;
             }
             // i+1 부터 j-1 까지 A가 있음
-            // 이게 가장 길게 연속된 A인지 확인하고
-            // 맞다면 기록하기
-            if (j-i+1 > seq_len) {
-                seq_len = j-i+1;
-                seq_start = i;
-                seq_end = j;
-            }
+            
+            // 이제 i까지 갔다가 돌아와서 j까지 가거나,
+            // j까지 갔다가 돌아와서 i까지 가는 것 중
+            // 더 짧은 것을 찾으면 됨
+            
+            int res;
+            // i까지 갔다가 돌아와서 j까지 가는 것
+            res = i*2 + (n-j);
+            answer = min(answer, res);
+            // j까지 갔다가 돌아와서 i까지 가는 것
+            res = i + (n-j)*2;
+            answer = min(answer, res);
             
             // 이제 j부터 A를 찾아서, 다시 반복함
             i = j;
         }
-    }
-    
-    // A가 하나도 없다면 seq_len은 0이므로
-    // seq_len > 0인 경우만 따짐
-    if (seq_len > 0) {
-        // 가장 A가 긴 경우의 시작점, 끝점
-        i = seq_start;
-        j = seq_end;
-
-        // 이제 i까지 갔다가 돌아와서 j까지 가거나,
-        // j까지 갔다가 돌아와서 i까지 가는 것 중
-        // 더 짧은 것을 찾으면 됨
-        int res;
-        // i까지 갔다가 돌아와서 j까지 가는 것
-        res = i*2 + (n-j);
-        answer = min(answer, res);
-        // j까지 갔다가 돌아와서 i까지 가는 것
-        res = i + (n-j)*2;
-        answer = min(answer, res);
     }
     
     // 이동 횟수의 최소값은 이제 찾았고,
