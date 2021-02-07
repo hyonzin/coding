@@ -1,3 +1,5 @@
+// https://www.acmicpc.net/problem/18352
+
 #include <stdio.h>
 
 typedef struct _Neighbor {
