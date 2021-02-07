@@ -43,10 +43,13 @@ int solution(string name) {
     //  끝으로 한번 갔다가 돌아와서(2) 오른쪽으로 3번
     //  가는게 최소임. 이 경우 답은 8
     
-    // 일단 두번째 글자 이후로 A를 찾기
+    // A가 가장 길게 연속된 지점의 시작점, 끝점을 찾고,
+    // 한 방향으로 갔다가 되돌아가는 경우를 따지면 됨
     int seq_len = 0;
     int seq_start = 0;
     int seq_end = 0;
+    
+    // 일단 두번째 글자 이후로 A를 찾기
     for (i=1; i<n; ++i) {
         if (name[i] == 'A') {
             i--;
@@ -69,7 +72,9 @@ int solution(string name) {
         }
     }
     
-    if (seq_end > 0) {
+    // A가 하나도 없다면 seq_len은 0이므로
+    // seq_len > 0인 경우만 따짐
+    if (seq_len > 0) {
         // 가장 A가 긴 경우의 시작점, 끝점
         i = seq_start;
         j = seq_end;
