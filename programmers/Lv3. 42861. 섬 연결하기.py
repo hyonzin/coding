@@ -40,9 +40,6 @@ def solution(n, costs):
             # 다리 건설
             total_cost += cost
             cnt += 1
-            # 다리를 총 n-1개 지었으면 끝
-            if cnt == n-1:
-                break
         # 두 섬의 그룹 값이 같은데, 둘 다 그룹이 안 매겨졌다면
         # (= 다리가 아직 지어진 적 없다면)
         # 둘 다 새로운 그룹으로 추가
@@ -54,8 +51,8 @@ def solution(n, costs):
             # 다리 건설
             total_cost += cost
             cnt += 1
-            # 다리를 총 n-1개 지었으면 끝
-            if cnt == n-1:
-                break
+        # 다리를 총 n-1개 지었으면 끝
+        if cnt == n-1:
+            break
     
     return total_cost
