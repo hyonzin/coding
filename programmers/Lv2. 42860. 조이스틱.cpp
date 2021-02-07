@@ -6,6 +6,8 @@
 
 using namespace std;
 
+// A와의 차이값을 구하는 함수.
+// 거꾸로 가는 것도 고려
 int dif_A(char w) {
     if (w <= 'N')
         return w-'A';
