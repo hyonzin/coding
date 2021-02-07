@@ -59,10 +59,10 @@ int solution(string name) {
             // 더 짧은 것을 찾으면 됨
             
             int res;
+            // i까지 갔다가 돌아와서 j까지 가는 것
             res = i*2 + (n-j);
-            // i까지 갔다가 돌아와서 j까지 가는 것 
             answer = min(answer, res);
-            // j까지 갔다가 돌아와서 i까지 가는 것 
+            // j까지 갔다가 돌아와서 i까지 가는 것
             res = i + (n-j)*2;
             answer = min(answer, res);
             
