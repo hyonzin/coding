@@ -67,7 +67,7 @@ def solution(gems):
         # 이제 x번째는 1개 뿐인 보석이거나,
         # 아까 제외한 1개뿐인 보석이어서 0개인 보석임
         i = x
-        # j는 아까 봐둔 곳부터 이어서 보면 됨
+        # j는 아까 보던 곳부터 이어서 보면 됨
     
     answer = [answer_start, answer_end]
     return answer
