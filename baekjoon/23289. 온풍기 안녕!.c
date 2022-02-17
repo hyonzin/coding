@@ -85,7 +85,7 @@ void heat(int d, int val, int r, int c) {
 
 int main(int argc, char* argv[]) {
   int r, c;
-  unsigned int h, d;
+  int h, d;
   int i, val;
   int is_done;
 
