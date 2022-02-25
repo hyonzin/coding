@@ -1,4 +1,3 @@
-// https://www.acmicpc.net/problem/23289
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -141,22 +140,22 @@ int main(int argc, char* argv[]) {
     r--;
     c--;
     if( val == 0 ){
-      walls[IDX(r,   c)] |= 4;
-      walls[IDX(r-1, c)] |= 8;
+      walls[IDX(r,   c)] |= WALL_UP;
+      walls[IDX(r-1, c)] |= WALL_DOWN;
     } else if( val == 1 ){
-      walls[IDX(r, c  )] |= 1;
-      walls[IDX(r, c+1)] |= 2;
+      walls[IDX(r, c  )] |= WALL_RIGHT;
+      walls[IDX(r, c+1)] |= WALL_LEFT;
     }
   }
 
   // border's wall
   for( r = 0; r < R; ++r ){
-    walls[IDX(r, 0  )] |= 2;
-    walls[IDX(r, C-1)] |= 1;
+    walls[IDX(r, 0  )] |= WALL_LEFT;
+    walls[IDX(r, C-1)] |= WALL_RIGHT;
   }
   for( c = 0; c < C; ++c ){
-    walls[IDX(0,   c)] |= 4;
-    walls[IDX(R-1, c)] |= 8;
+    walls[IDX(0,   c)] |= WALL_UP;
+    walls[IDX(R-1, c)] |= WALL_DOWN;
   }
 
   // set heaters
@@ -166,10 +165,10 @@ int main(int argc, char* argv[]) {
     c = heaters_c[h];
 
     memset(heater_updated, 0, R * C * sizeof(unsigned char));
-    if     ( d == 1 ) heat(d, 5, r,   c+1);
-    else if( d == 2 ) heat(d, 5, r,   c-1);
-    else if( d == 3 ) heat(d, 5, r-1, c  );
-    else if( d == 4 ) heat(d, 5, r+1, c  );
+    if     ( d == HEATER_RIGHT ) heat(d, 5, r,   c+1);
+    else if( d == HEATER_LEFT  ) heat(d, 5, r,   c-1);
+    else if( d == HEATER_UP    ) heat(d, 5, r-1, c  );
+    else if( d == HEATER_DOWN  ) heat(d, 5, r+1, c  );
   }
 
   //main loop
@@ -187,25 +186,25 @@ int main(int argc, char* argv[]) {
       for( c = 0; c < C; ++c ){
         if( !(walls[IDX(r, c)] & 1) && (tem[IDX(r, c)] > tem[IDX(r, c+1)]) ) {
           d = (tem[IDX(r, c)] - tem[IDX(r, c+1)]) / 4;
-          tem_delta[IDX(r, c)] -= d;
+          tem_delta[IDX(r, c  )] -= d;
           tem_delta[IDX(r, c+1)] += d;
 
         }
         if( !(walls[IDX(r, c)] & 2) && (tem[IDX(r, c)] > tem[IDX(r, c-1)]) ) {
           d = (tem[IDX(r, c)] - tem[IDX(r, c-1)]) / 4;
-          tem_delta[IDX(r, c)] -= d;
+          tem_delta[IDX(r, c  )] -= d;
           tem_delta[IDX(r, c-1)] += d;
 
         }
         if( !(walls[IDX(r, c)] & 4) && (tem[IDX(r, c)] > tem[IDX(r-1, c)]) ) {
           d = (tem[IDX(r, c)] - tem[IDX(r-1, c)]) / 4;
-          tem_delta[IDX(r, c)] -= d;
+          tem_delta[IDX(r,   c)] -= d;
           tem_delta[IDX(r-1, c)] += d;
 
         }
         if( !(walls[IDX(r, c)] & 8) && (tem[IDX(r, c)] > tem[IDX(r+1, c)]) ) {
           d = (tem[IDX(r, c)] - tem[IDX(r+1, c)]) / 4;
-          tem_delta[IDX(r, c)] -= d;
+          tem_delta[IDX(r,   c)] -= d;
           tem_delta[IDX(r+1, c)] += d;
 
         }
