@@ -19,7 +19,7 @@
 #define ALIVE_N 1
 
 #define MOVED_X(d, x) ( ((d) == LEFT)? ((x)-1) : ((d) == RIGHT)? ((x)+1) : (x) )
-#define MOVED_Y(d, x) ( ((d) == UP  )? ((y)-1) : ((d) == DOWN )? ((y)+1) : (y) )
+#define MOVED_Y(d, y) ( ((d) == UP  )? ((y)-1) : ((d) == DOWN )? ((y)+1) : (y) )
 
 // 맵 크기, 상어 수, 냄새유지시간
 int N, M, k;
@@ -156,18 +156,10 @@ int main(int argc, char* argv[]) {
 
     // 3. 시간 지남
     cur_time++;
-
-    //TEMP
-    // printf("T %d\n", cur_time);
-    // for(m=1; m<=M; ++m){
-    //   printf("[%d] %d,%d (%d)\n", m, shark[m][STATE][SHARK_X]+1, shark[m][STATE][SHARK_Y]+1, shark[m][STATE][SHARK_IS_ALIVE]);
-    // }
-    // if (cur_time > 10) break;
   }
 
   // 정답 출력
   if (cur_time > 1000) cur_time = -1;
   printf("%d", cur_time);
-
   return 0;
 }
